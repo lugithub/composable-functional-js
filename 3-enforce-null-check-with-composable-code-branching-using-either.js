@@ -12,7 +12,7 @@ const Left = x => ({
 
 //fromNullable returns Either
 const fromNullable = x =>
-  x != null ? Right(x) : Left(x);
+  x != null ? Right(x) : Left(null); //Left() may be good too
 
 const findColor = name =>
     fromNullable({red: '#ff4444', blue: '#3b5998', yellow: '#fff68f'}[name]);
