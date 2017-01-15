@@ -8,7 +8,7 @@ const Right = x => ({
 });
 
 const Left = x => ({
-  chain: f => f(x),
+  chain: f => Left(x),
   map: f => Left(x),
   fold: (f, g) => f(x),
   inspect: () => `Left(${x})`,
