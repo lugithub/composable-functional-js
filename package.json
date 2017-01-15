@@ -1,0 +1,24 @@
+{
+  "name": "composable-functional-js",
+  "version": "1.0.0",
+  "description": "https://egghead.io/lessons/javascript-linear-data-flow-with-container-style-types-box",
+  "main": "1-create-linear-data-flow-with-container-style-types.js",
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "immutable-ext": "^1.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lugithub/composable-functional-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lugithub/composable-functional-js/issues"
+  },
+  "homepage": "https://github.com/lugithub/composable-functional-js#readme"
+}
