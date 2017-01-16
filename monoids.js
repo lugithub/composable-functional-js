@@ -8,4 +8,17 @@ const Sum = x =>
 });
 Sum.empty = () => Sum(0);
 
-module.exports = { Sum };
+const Box = x => ({
+  map: f => Box(f(x)),
+  fold: f => f(x),
+
+  // https://nodejs.org/dist/latest-v6.x/docs/api/util.html#util_custom_inspection_functions_on_objects
+  inspect: () => `Box(${x})`,
+});
+
+const LazyBox = g => ({
+  map: f => LazyBox(() => f(g())),
+  fold: f => f(g()),
+});
+
+module.exports = { Sum, Box, LazyBox };
