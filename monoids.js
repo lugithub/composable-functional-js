@@ -14,7 +14,7 @@ const Box = x => ({
   chain: f => f(x),
 
   ap: other => other.map(x),
-  
+
   // https://nodejs.org/dist/latest-v6.x/docs/api/util.html#util_custom_inspection_functions_on_objects
   inspect: () => `Box(${x})`,
 });
@@ -25,4 +25,44 @@ const LazyBox = g => ({
   fold: f => f(g()),
 });
 
-module.exports = { Sum, Box, LazyBox };
+//const Either = Right || Left
+
+const Right = x => ({
+  chain: f => f(x),
+  map: f => Right(f(x)),
+
+  ap: other => other.map(x),
+
+  fold: (f, g) => g(x),
+  inspect: () => `Right(${x})`
+})
+
+const Left = x => ({
+  chain: f => Left(x),
+  map: f => Left(x),
+
+  ap: other => Left(x),
+
+  fold: (f, g) => f(x),
+  inspect: () => `Left(${x})`
+})
+
+const fromNullable = x =>
+ x != null ? Right(x) : Left(null)
+
+const tryCatch = f => {
+  try {
+    return Right(f())
+  } catch (e) {
+    return Left(e)
+  }
+}
+
+let Either = {}
+
+Either.rejected = a => Left(a)
+Either.of = a => Right(a)
+Either.fromNullable = fromNullable
+
+module.exports = Either
+module.exports = { Sum, Box, LazyBox, Either};
