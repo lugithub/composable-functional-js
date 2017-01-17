@@ -15,6 +15,7 @@ const Box = x => ({
   // https://nodejs.org/dist/latest-v6.x/docs/api/util.html#util_custom_inspection_functions_on_objects
   inspect: () => `Box(${x})`,
 });
+Box.of = x => Box(x);
 
 const LazyBox = g => ({
   map: f => LazyBox(() => f(g())),
