@@ -62,6 +62,8 @@ let Either = {}
 
 Either.rejected = a => Left(a)
 Either.of = a => Right(a)
+Either.Right = Right;
+Either.Left = Left;
 Either.fromNullable = fromNullable
 
 module.exports = Either
