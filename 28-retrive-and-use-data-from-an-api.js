@@ -1,27 +1,15 @@
-//https://developer.spotify.com/web-api/console/artists/
-
-// /v1/search?q=oasis&type=artist
-//
-
-// /v1/artists/2DaxqgrOhkeH0fpeiQq2f4/related-artists
-//
-
 const Task = require('data.task');
+const { findArtist, relatedArtists } = require('./spotify');
 
 const argv = Task.of(process.argv);
 const names = argv.map(args => args.slice(2))
 //.fork(console.error, console.log);
 
-const findArtist = name =>
-  Task.of({id: 7});
-
-const relatedArtists = id =>
-  Task.of([{id: 100}, {id: 200}]);
-
 const related = name =>
   findArtist(name)
   .map(artist => artist.id)
-  .chain(relatedArtists);
+  .chain(relatedArtists)
+  .map(artists => artists.map(artist => artist.name));
 
 const main = ([name1, name2]) =>
   Task.of(relatedArtists1 => relatedArtists2 =>
@@ -31,6 +19,3 @@ const main = ([name1, name2]) =>
 
 names.chain(main)
 .fork(console.error, console.log);
-
-//to run
-//node 28-retrive-and-use-data-from-an-api.js oasis blur
