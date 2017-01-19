@@ -19,3 +19,6 @@ const main = ([name1, name2]) =>
 
 names.chain(main)
 .fork(console.error, console.log);
+
+//to run
+//node 28-retrive-and-use-data-from-an-api.js oasis blur
