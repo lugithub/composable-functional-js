@@ -8,6 +8,17 @@ const Sum = x =>
 });
 Sum.empty = () => Sum(0);
 
+const Pair = (x, y) =>
+  ({
+    x,
+	  y,
+    concat: ({x: x1, y: y1}) =>
+      Pair(x.concat(x1), y.concat(y1)),
+
+    toList: _ => [x, y], //natural transformation
+    bimap: (f, g) => Pair(f(x), g(y)),
+	});
+
 const Box = x => ({
   map: f => Box(f(x)),
   fold: f => f(x),
@@ -67,4 +78,4 @@ Either.Left = Left;
 Either.fromNullable = fromNullable
 
 module.exports = Either
-module.exports = { Sum, Box, LazyBox, Either};
+module.exports = { Sum, Box, LazyBox, Either, Pair};
